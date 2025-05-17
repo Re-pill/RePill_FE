@@ -1,5 +1,6 @@
 import { VariantProps, cva } from 'class-variance-authority'
 import { cn } from '@/utils/cn'
+import { Slot } from '@radix-ui/react-slot'
 
 const variants = cva(
   'inline-flex gap-2 justify-center items-center whitespace-nowrap rounded-full border-2 border-solid border-transparent transition-colors flex items-center justify-center h-12 px-5 w-auto text-base hover:cursor-pointer disabled:pointer-events-none disabled:opacity-50',
@@ -28,18 +29,23 @@ const variants = cva(
 
 export interface PillButtonProps
   extends React.ComponentProps<'button'>,
-    VariantProps<typeof variants> {}
+    VariantProps<typeof variants> {
+  asChild?: boolean
+}
 
 export function PillButton({
   children,
   className,
   size = 'md',
   variant = 'primary',
+  asChild = false,
   ...props
 }: PillButtonProps) {
+  const Comp = asChild ? Slot : 'button'
+
   return (
-    <button className={cn(variants({ size, variant }), className)} {...props}>
+    <Comp className={cn(variants({ size, variant }), className)} {...props}>
       {children}
-    </button>
+    </Comp>
   )
 }
