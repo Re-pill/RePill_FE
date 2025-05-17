@@ -33,7 +33,7 @@ export function PillTextInputIcon({
 }) {
   return (
     <Slot
-      role="presentation"
+      role='presentation'
       className={cn(
         'absolute top-3 pointer-events-none size-5',
         pos === 'left' ? 'left-4 [&~input]:pl-11' : 'right-4',
@@ -59,7 +59,7 @@ export function PillTextInput({ className, ...props }: PillTextInputProps) {
         'rounded-full w-full h-13 px-4 border-2 border-solid border-white placeholder-shown:border-secondary bg-transparent text-base font-bold text-black transition-colors placeholder:text-secondary focus:border-white focus:placeholder:text-secondary-hover disabled:cursor-not-allowed focus-visible:outline-0',
         className
       )}
-      type="text"
+      type='text'
       ref={ref}
       {...props}
     />
