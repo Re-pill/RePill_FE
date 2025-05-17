@@ -17,7 +17,7 @@ export const Primary: Story = {
   },
   argTypes: {
     variant: {
-      options: ['primary', 'secondary', 'ghost'],
+      options: ['primary', 'secondary', 'ghost', 'link'],
       control: { type: 'select' }
     },
     size: {
@@ -74,3 +74,29 @@ export const Ghost: Story = {
     }
   }
 }
+
+export const Link: Story = {
+  args: {
+    children: "Button",
+    variant: "link",
+    size: "md"
+  },
+
+  argTypes: {
+    variant: {
+      options: ["primary", "secondary", "ghost", "link"],
+
+      control: {
+        type: "select"
+      }
+    },
+
+    size: {
+      options: ["sm", "md", "lg", "full"],
+
+      control: {
+        type: "select"
+      }
+    }
+  }
+};
