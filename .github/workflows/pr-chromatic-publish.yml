@@ -41,13 +41,10 @@ jobs:
           # Grab this from the Chromatic manage page
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
 
-      - name: Set URL
-        if: success()
-        run: echo "CHROMATIC_URL=${{ steps.chromatic.outputs.storybookUrl }}" >> $GITHUB_ENV
-
       - name: Comment on PR
+        if: success()
         uses: thollander/actions-comment-pull-request@v3
         with:
           message: |
             ## Storybook Preview
-            [View Storybook](${{ env.STORYBOOK_URL }})
+            [View Storybook](${{ steps.chromatic.outputs.storybookUrl }})
