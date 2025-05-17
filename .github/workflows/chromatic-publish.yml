@@ -1,6 +1,10 @@
 name: 'Chromatic Publish'
 
-on: push
+on:
+  push:
+    branches:
+      - main
+      - develop
 
 jobs:
   chromatic:
