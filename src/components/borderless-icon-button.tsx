@@ -7,7 +7,7 @@ const iconButtonVariants = cva(
   {
     variants: {
       variant: {
-        default: 'text-gray-600 hover:bg-gray-100',
+        default: 'bg-secondary-bg hover:bg-gray-100',
         danger: 'text-red-500 hover:bg-red-100',
         accent: 'text-primary-bg hover:bg-primary-bg/10'
       },
@@ -28,6 +28,7 @@ export interface BorderlessIconButtonProps
   extends React.ComponentProps<'button'>,
     VariantProps<typeof iconButtonVariants> {
   asChild?: boolean
+  showDot?: boolean
 }
 
 export function BorderlessIconButton({
@@ -36,16 +37,23 @@ export function BorderlessIconButton({
   variant = 'default',
   size = 'md',
   asChild = false,
+  showDot = false,
   ...props
 }: BorderlessIconButtonProps) {
   const Comp = asChild ? Slot : 'button'
 
   return (
     <Comp
-      className={cn(iconButtonVariants({ variant, size }), className)}
+      className={cn(
+        'relative',
+        iconButtonVariants({ variant, size }), 
+        className)}
       {...props}
     >
       {children}
+      {showDot && (
+        <span className="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full" />
+      )}
     </Comp>
   )
 }
