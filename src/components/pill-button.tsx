@@ -7,11 +7,12 @@ const variants = cva(
   {
     variants: {
       variant: {
-        primary: 'bg-primary text-black hover:bg-primary-hover',
-        secondary: 'bg-secondary text-background hover:bg-secondary-hover',
+        primary: 'bg-primary-bg text-black hover:bg-primary-bg-hover',
+        secondary:
+          'bg-secondary-bg text-black hover:bg-secondary-bg-hover hover:text-white',
         ghost:
-          'border-secondary text-secondary hover:bg-secondary-hover hover:border-transparent hover:text-background',
-        link: 'text-secondary underline underline-offset-4 hover:text-secondary-hover transition-none'
+          'border-secondary-bg-hover text-secondary-bg-hover hover:bg-secondary-bg-hover hover:border-transparent hover:text-background',
+        link: 'text-secondary-bg-hover/90 underline underline-offset-4 hover:text-secondary-bg-hover transition-none'
       },
       size: {
         sm: 'h-10 px-4 text-sm',

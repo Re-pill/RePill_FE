@@ -66,7 +66,7 @@ export function Calendar({
   )
 
   const buttonRangeClassName =
-    'bg-primary-hover [&>button]:bg-primary [&>button]:text-black'
+    'bg-primary-bg-hover [&>button]:bg-primary-bg [&>button]:text-black'
   const _rangeStartClassName = cn(
     buttonRangeClassName,
     'rounded-s-full',
@@ -78,11 +78,11 @@ export function Calendar({
     props.rangeEndClassName
   )
   const _rangeMiddleClassName = cn(
-    'bg-primary-hover text-white [&>button]:bg-transparent [&>button]:text-white',
+    'bg-primary-bg-hover [&>button]:bg-transparent',
     props.rangeMiddleClassName
   )
   const _selectedClassName = cn(
-    '[&>button]:bg-primary [&>button]:text-black',
+    '[&>button]:bg-primary-bg [&>button]:text-black',
     props.selectedClassName
   )
   const _todayClassName = cn('[&>button]:text-lime-600', props.todayClassName)

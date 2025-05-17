@@ -12,7 +12,7 @@ export function PillTextInputRoot({
   return (
     <div
       className={cn(
-        'relative text-secondary focus-within:text-secondary-hover',
+        'relative text-secondary-bg-hover [&:has(input:placeholder-shown)]:text-secondary-bg [&:has(input:focus)]:text-secondary-bg-hover! transition-colors',
         className
       )}
       {...props}
@@ -51,16 +51,13 @@ export interface PillTextInputProps
 }
 
 export function PillTextInput({ className, ...props }: PillTextInputProps) {
-  const ref = React.useRef<HTMLInputElement>(null)
-
   return (
     <input
       className={cn(
-        'rounded-full w-full h-13 px-4 border-2 border-solid border-white placeholder-shown:border-secondary bg-transparent text-base font-bold text-black transition-colors placeholder:text-secondary focus:border-white focus:placeholder:text-secondary-hover disabled:cursor-not-allowed focus-visible:outline-0',
+        'rounded-full w-full h-13 px-4 border-2 border-solid border-secondary-bg-hover placeholder-shown:border-secondary-bg bg-transparent text-base font-bold text-black transition-colors placeholder:text-secondary-bg placeholder:font-medium focus:border-secondary-bg-hover focus:placeholder:text-secondary disabled:cursor-not-allowed focus-visible:outline-0',
         className
       )}
       type='text'
-      ref={ref}
       {...props}
     />
   )
