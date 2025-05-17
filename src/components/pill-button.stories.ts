@@ -26,3 +26,55 @@ export const Primary: Story = {
     }
   }
 }
+
+export const Secondary: Story = {
+  args: {
+    children: "Button",
+    variant: "secondary",
+    size: "md"
+  },
+
+  argTypes: {
+    variant: {
+      options: ["primary", "secondary", "ghost"],
+
+      control: {
+        type: "select"
+      }
+    },
+
+    size: {
+      options: ["sm", "md", "lg", "full"],
+
+      control: {
+        type: "select"
+      }
+    }
+  }
+};
+
+export const Ghost: Story = {
+  args: {
+    children: "Button",
+    variant: "ghost",
+    size: "md"
+  },
+
+  argTypes: {
+    variant: {
+      options: ["primary", "secondary", "ghost"],
+
+      control: {
+        type: "select"
+      }
+    },
+
+    size: {
+      options: ["sm", "md", "lg", "full"],
+
+      control: {
+        type: "select"
+      }
+    }
+  }
+};
