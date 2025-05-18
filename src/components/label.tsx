@@ -5,7 +5,10 @@ import * as LabelPrimitive from '@radix-ui/react-label'
 
 import { cn } from '@/utils/cn'
 
-const Label = ({ className, ...props }: LabelPrimitive.LabelProps) => (
+const Label = ({
+  className,
+  ...props
+}: React.ComponentProps<typeof LabelPrimitive.Root>) => (
   <LabelPrimitive.Root
     className={cn(
       'text-sm font-semibold leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70',
