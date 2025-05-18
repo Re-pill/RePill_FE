@@ -20,7 +20,7 @@ import { cn } from '@/utils/cn'
 import { ScrollArea, ScrollBar } from '@/components/scrollarea'
 import React from 'react'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/popover'
-import { Calendar as CalendarIcon } from 'lucide-react'
+import { Calendar as CalendarIcon, Plus } from 'lucide-react'
 import { Calendar } from '@/components/calendar'
 
 const pillAddSchema = z.object({
@@ -38,9 +38,20 @@ const pillAddSchema = z.object({
   expirationDate: z.date({
     required_error: '유통기한이 적혀있지 않아요.'
   }),
-  notifyBefore: z.array(z.number()).min(1, {
-    message: '최소 한 개의 알림을 설정해주세요.'
-  })
+  notifyBefore: z
+    .array(z.number())
+    .min(1, {
+      message: '최소 한 개의 알림을 설정해주세요.'
+    })
+    .refine(
+      (val) => {
+        const unique = new Set(val)
+        return unique.size === val.length
+      },
+      {
+        message: '알림은 중복으로 받을 수 없어요.'
+      }
+    )
 })
 
 function InputWithAffixes({
@@ -59,14 +70,17 @@ function InputWithAffixes({
   suffixClassName?: string
 }) {
   const [text, setText] = React.useState(String(value))
+  const prefixRef = React.useRef<HTMLSpanElement>(null)
   const wrapperRef = React.useRef<HTMLDivElement>(null)
   const mirrorRef = React.useRef<HTMLSpanElement>(null)
   const suffixRef = React.useRef<HTMLSpanElement>(null)
+  const [prefixW, setPrefixW] = React.useState(0)
   const [w, setW] = React.useState(0)
   const [wrapperW, setWrapperW] = React.useState(0)
   const [suffixW, setSuffixW] = React.useState(0)
 
   React.useLayoutEffect(() => {
+    setPrefixW(prefixRef.current?.offsetWidth ?? 0)
     setW(mirrorRef.current?.offsetWidth ?? 0)
     setWrapperW(wrapperRef.current?.offsetWidth ?? 0)
     setSuffixW(suffixRef.current?.offsetWidth ?? 0)
@@ -74,7 +88,7 @@ function InputWithAffixes({
 
   // calculate clamped position: never overflow wrapper
   const maxLeft = wrapperW - suffixW - 8
-  const leftPos = Math.min(w + 24, maxLeft)
+  const leftPos = Math.min(w + 18, maxLeft)
   // always reserve padding for suffix
   const padRight = suffixW + 8
 
@@ -83,9 +97,10 @@ function InputWithAffixes({
       {prefix && (
         <span
           className={cn(
-            'absolute top-3.5 left-4 text-base font-bold [&~input]:pl-12',
+            'absolute top-3.5 left-4 text-base font-bold',
             prefixClassName
           )}
+          ref={prefixRef}
         >
           {prefix}
         </span>
@@ -102,7 +117,7 @@ function InputWithAffixes({
           onChange && onChange(e)
           setText(e.target.value)
         }}
-        style={{ paddingRight: padRight }}
+        style={{ paddingLeft: prefixW + 14, paddingRight: padRight }}
         {...props}
       />
 
@@ -213,7 +228,7 @@ const AddForm = () => {
                     }}
                     prefix='하루 '
                     prefixClassName={cn(
-                      'font-medium',
+                      'font-medium pr-1',
                       field.value !== 0 && 'font-bold text-black'
                     )}
                     suffix='회'
@@ -271,6 +286,74 @@ const AddForm = () => {
             </FormItem>
           )}
         />
+        <FormField
+          control={form.control}
+          name='notifyBefore'
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>알림</FormLabel>
+              <div className='h-1'></div>
+              <FormControl>
+                <div className='flex flex-col gap-4'>
+                  {field.value.map((value, index) => {
+                    const updateValue = (newValue: number) => {
+                      const newArray = [...field.value]
+                      newArray[index] = newValue
+                      field.onChange(newArray)
+                    }
+
+                    return (
+                      <PillTextInputRoot key={index}>
+                        <InputWithAffixes
+                          {...field}
+                          placeholder='1'
+                          inputMode='decimal'
+                          pattern='(?:[1-9]\d*)'
+                          autoComplete='off'
+                          onChange={(e) => {
+                            const value = e.target.value
+                              .replace(/[^0-9]/g, '')
+                              .replace(/^0$/, '')
+                            updateValue(value ? parseInt(value) : 0)
+                            e.target.value = value
+                          }}
+                          value={value}
+                          prefix='유통기한으로 부터 D-'
+                          prefixClassName={cn(
+                            'font-medium',
+                            field.value[index] !== 0 && 'font-bold text-black'
+                          )}
+                          className='text-[#FF7447]'
+                        />
+                      </PillTextInputRoot>
+                    )
+                  })}
+                  <PillButton
+                    variant='secondary'
+                    size='full'
+                    className='group'
+                    onClick={(e) => {
+                      e.preventDefault()
+                      field.onChange([...field.value, 1])
+                    }}
+                  >
+                    <Plus className='w-6 h-6 text-secondary-bg-hover group-hover:text-white' />
+                  </PillButton>
+                </div>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <PillButton
+          type='submit'
+          variant='primary'
+          size='full'
+          className='font-semibold text-black'
+        >
+          등록하기
+        </PillButton>
       </form>
     </Form>
   )
