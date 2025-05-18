@@ -3,12 +3,12 @@ import { cn } from '@/utils/cn'
 import { Slot } from '@radix-ui/react-slot'
 
 const iconButtonVariants = cva(
-  'inline-flex items-center justify-center p-2 rounded-full transition-colors disabled:opacity-50 disabled:pointer-events-none',
+  'relative inline-flex items-center justify-center p-2 rounded-full transition-colors disabled:opacity-50 disabled:pointer-events-none',
   {
     variants: {
       variant: {
-        default: 'text-gray-600 hover:bg-gray-100',
-        danger: 'text-red-500 hover:bg-red-100',
+        default: 'text-secondary hover:bg-secondary-bg-hover',
+        withDot: 'text-secondary hover:bg-secondary-bg-hover',
         accent: 'text-primary-bg hover:bg-primary-bg/10'
       },
       size: {
@@ -28,7 +28,6 @@ export interface BorderlessIconButtonProps
   extends React.ComponentProps<'button'>,
     VariantProps<typeof iconButtonVariants> {
   asChild?: boolean
-  showDot?: boolean
 }
 
 export function BorderlessIconButton({
@@ -37,22 +36,18 @@ export function BorderlessIconButton({
   variant = 'default',
   size = 'md',
   asChild = false,
-  showDot = false,
   ...props
 }: BorderlessIconButtonProps) {
   const Comp = asChild ? Slot : 'button'
 
   return (
     <Comp
-      className={cn(
-        'relative',
-        iconButtonVariants({ variant, size }), 
-        className)}
+      className={cn(iconButtonVariants({ variant, size }), className)}
       {...props}
     >
       {children}
-      {showDot && (
-        <span className="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full" />
+      {variant === 'withDot' && (
+        <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full" />
       )}
     </Comp>
   )

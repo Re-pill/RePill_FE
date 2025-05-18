@@ -19,24 +19,21 @@ export const Default: Story = {
   },
   argTypes: {
     variant: {
-      options: ['default', 'danger', 'accent'],
+      options: ['default', 'withDot', 'accent'],
       control: { type: 'select' }
     },
     size: {
       options: ['sm', 'md', 'lg'],
       control: { type: 'select' }
     },
-    showDot: {
-      control: { type: 'boolean' }
-    }
   }
 }
 
-export const Danger: Story = {
+export const WithDot: Story = {
   args: {
     children: <BellIcon />,
-    variant: 'danger',
-    size: 'md'
+    variant: 'withDot',
+    size: 'md',
   },
   argTypes: Default.argTypes
 }
@@ -46,16 +43,6 @@ export const Accent: Story = {
     children: <BellIcon />,
     variant: 'accent',
     size: 'md'
-  },
-  argTypes: Default.argTypes
-}
-
-export const WithDot: Story = {
-  args: {
-    children: <BellIcon />,
-    variant: 'danger',
-    size: 'md',
-    showDot: true
   },
   argTypes: Default.argTypes
 }
