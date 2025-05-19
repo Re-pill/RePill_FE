@@ -53,11 +53,13 @@ const AlertDialogContent = ({
             : 'radial-gradient(50% 50% at 50% 50%, #3261D7 0%, #E1E3E6 100%)'
         }}
       >
-        {sadFace ? (
-          <SadFace className='h-12 w-12' />
-        ) : (
-          <HappyFace className='h-12 w-12' />
-        )}
+        {sadFace
+          ? (
+            <SadFace className='h-12 w-12' />
+            )
+          : (
+            <HappyFace className='h-12 w-12' />
+            )}
       </div>
       <div className='grid w-full gap-4'>{children}</div>
     </AlertDialogPrimitive.Content>

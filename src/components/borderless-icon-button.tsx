@@ -26,11 +26,11 @@ const iconButtonVariants = cva(
 
 export interface BorderlessIconButtonProps
   extends React.ComponentProps<'button'>,
-    VariantProps<typeof iconButtonVariants> {
+  VariantProps<typeof iconButtonVariants> {
   asChild?: boolean
 }
 
-export function BorderlessIconButton({
+export function BorderlessIconButton ({
   children,
   className,
   variant = 'default',
@@ -47,7 +47,7 @@ export function BorderlessIconButton({
     >
       {children}
       {variant === 'withDot' && (
-        <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full" />
+        <span className='absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full' />
       )}
     </Comp>
   )

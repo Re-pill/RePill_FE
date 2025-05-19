@@ -1,4 +1,4 @@
-export function SadFace(props: React.SVGProps<SVGSVGElement>) {
+export function SadFace (props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       width='64'

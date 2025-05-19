@@ -43,7 +43,7 @@ export const TextInputWithIcon: Story & {
   }) => (
     <PillTextInputRoot>
       <PillTextInputIcon pos={pos}>
-        <Search className="w-6 h-6" />
+        <Search className='w-6 h-6' />
       </PillTextInputIcon>
       <PillTextInput placeholder={placeholder} />
     </PillTextInputRoot>

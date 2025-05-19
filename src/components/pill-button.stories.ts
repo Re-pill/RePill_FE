@@ -77,26 +77,26 @@ export const Ghost: Story = {
 
 export const Link: Story = {
   args: {
-    children: "Button",
-    variant: "link",
-    size: "md"
+    children: 'Button',
+    variant: 'link',
+    size: 'md'
   },
 
   argTypes: {
     variant: {
-      options: ["primary", "secondary", "ghost", "link"],
+      options: ['primary', 'secondary', 'ghost', 'link'],
 
       control: {
-        type: "select"
+        type: 'select'
       }
     },
 
     size: {
-      options: ["sm", "md", "lg", "full"],
+      options: ['sm', 'md', 'lg', 'full'],
 
       control: {
-        type: "select"
+        type: 'select'
       }
     }
   }
-};
+}

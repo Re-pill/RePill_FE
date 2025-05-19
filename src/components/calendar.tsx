@@ -32,7 +32,7 @@ export type CalendarProps = React.ComponentProps<typeof DayPicker> & {
   navButtonClassName?: string
 }
 
-export function Calendar({
+export function Calendar ({
   className,
   classNames,
   components: customComponents,

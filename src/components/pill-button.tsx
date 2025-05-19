@@ -30,11 +30,11 @@ export const buttonVariants = cva(
 
 export interface PillButtonProps
   extends React.ComponentProps<'button'>,
-    VariantProps<typeof buttonVariants> {
+  VariantProps<typeof buttonVariants> {
   asChild?: boolean
 }
 
-export function PillButton({
+export function PillButton ({
   children,
   className,
   size = 'md',
