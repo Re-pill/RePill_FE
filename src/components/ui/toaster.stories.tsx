@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import type { Meta, StoryObj } from '@storybook/react'
 
 import { Toaster } from './toaster'
@@ -22,8 +23,7 @@ export const SimpleToast: Story = {
           onClick={() =>
             toast({
               description: 'Toast Description'
-            })
-          }
+            })}
         >
           Toast!
         </PillButton>
@@ -44,8 +44,7 @@ export const WithTtile: Story = {
             toast({
               title: 'Toast Title',
               description: 'Toast Description'
-            })
-          }
+            })}
         >
           Toast!
         </PillButton>
@@ -67,8 +66,7 @@ export const WithAction: Story = {
               title: 'Toast Title',
               description: 'Toast Description',
               action: <ToastAction altText='Button'>Button</ToastAction>
-            })
-          }
+            })}
         >
           Toast!
         </PillButton>
@@ -90,8 +88,7 @@ export const Destructive: Story = {
               title: 'Toast Title',
               description: 'Toast Description',
               variant: 'destructive'
-            })
-          }
+            })}
         >
           Toast!
         </PillButton>
@@ -114,8 +111,7 @@ export const DestructiveWithAction: Story = {
               description: 'Toast Description',
               action: <ToastAction altText='Button'>Button</ToastAction>,
               variant: 'destructive'
-            })
-          }
+            })}
         >
           Toast!
         </PillButton>

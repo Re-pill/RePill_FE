@@ -10,7 +10,7 @@ import {
   ToastViewport
 } from './toast'
 
-export function Toaster() {
+export function Toaster () {
   const { toasts } = useToast()
 
   return (

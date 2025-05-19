@@ -2,9 +2,9 @@ import { cn } from '@/utils/cn'
 import { Slot } from '@radix-ui/react-slot'
 import React from 'react'
 
-export interface PillTextInputRootProps extends React.ComponentProps<'div'> {}
+export type PillTextInputRootProps = React.ComponentProps<'div'>
 
-export function PillTextInputRoot({
+export function PillTextInputRoot ({
   children,
   className,
   ...props
@@ -22,7 +22,7 @@ export function PillTextInputRoot({
   )
 }
 
-export function PillTextInputIcon({
+export function PillTextInputIcon ({
   children,
   className,
   pos = 'left'
@@ -50,7 +50,7 @@ export interface PillTextInputProps
   icon?: React.ReactNode
 }
 
-export function PillTextInput({ className, ...props }: PillTextInputProps) {
+export function PillTextInput ({ className, ...props }: PillTextInputProps) {
   return (
     <input
       className={cn(

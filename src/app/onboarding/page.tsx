@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import { Container } from '@/components/container'
 
-export default function OnboardingPage() {
+export default function OnboardingPage () {
   const router = useRouter()
 
   useEffect(() => {
@@ -16,10 +16,10 @@ export default function OnboardingPage() {
   }, [router])
 
   return (
-    <Container className="items-center justify-center">
+    <Container className='items-center justify-center'>
       <Image
-        src="/images/logo.svg"
-        alt="Re pill logo"
+        src='/images/logo.svg'
+        alt='Re pill logo'
         width={120}
         height={120}
         priority
