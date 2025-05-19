@@ -9,7 +9,6 @@ import {
   FormItem,
   FormLabel,
   FormControl,
-  FormDescription,
   FormMessage
 } from '@/components/form'
 import { PillTextInput, PillTextInputRoot } from '@/components/pill-text-input'
@@ -63,7 +62,7 @@ const pillAddSchema = z.object({
     )
 })
 
-function InputWithAffixes({
+function InputWithAffixes ({
   prefix,
   prefixClassName,
   suffix,
@@ -117,7 +116,8 @@ function InputWithAffixes({
       <span
         ref={mirrorRef}
         className='absolute top-0 left-0 invisible whitespace-pre text-base font-bold'
-      >{`${prefix || ''}${text || placeholder}`}</span>
+      >{`${prefix || ''}${text || placeholder}`}
+      </span>
 
       <PillTextInput
         value={text}
@@ -148,7 +148,7 @@ const AddForm = ({
   onSubmitError = () => {}
 }: {
   onSubmitSuccess?: (data: z.infer<typeof pillAddSchema>) => void
-  onSubmitError?: (error: any) => void
+  onSubmitError?: (error: unknown) => void
 }) => {
   const form = useForm<z.infer<typeof pillAddSchema>>({
     resolver: zodResolver(pillAddSchema),
@@ -184,7 +184,7 @@ const AddForm = ({
           render={({ field }) => (
             <FormItem>
               <FormLabel>약품명</FormLabel>
-              <div className='h-1'></div>
+              <div className='h-1' />
               <FormControl>
                 <PillTextInputRoot>
                   <PillTextInput {...field} placeholder='ex. 타이레놀' />
@@ -200,7 +200,7 @@ const AddForm = ({
           render={({ field }) => (
             <FormItem>
               <FormLabel>종류</FormLabel>
-              <div className='h-1'></div>
+              <div className='h-1' />
               <FormControl>
                 <ScrollArea className='w-full'>
                   <div className='flex w-max space-x-4'>
@@ -235,7 +235,7 @@ const AddForm = ({
           render={({ field }) => (
             <FormItem>
               <FormLabel>복용횟수</FormLabel>
-              <div className='h-1'></div>
+              <div className='h-1' />
               <FormControl>
                 <PillTextInputRoot>
                   <InputWithAffixes
@@ -275,7 +275,7 @@ const AddForm = ({
           render={({ field }) => (
             <FormItem>
               <FormLabel>유통기한</FormLabel>
-              <div className='h-1'></div>
+              <div className='h-1' />
               <Popover>
                 <PopoverTrigger asChild>
                   <FormControl>
@@ -301,7 +301,7 @@ const AddForm = ({
                   <Calendar
                     mode='single'
                     selected={field.value}
-                    onSelect={field.onChange}
+                    onSelect={(...args) => { field.onChange(...args) }}
                     disabled={(date) => date < new Date()}
                     autoFocus
                   />
@@ -317,7 +317,7 @@ const AddForm = ({
           render={({ field }) => (
             <FormItem>
               <FormLabel>알림</FormLabel>
-              <div className='h-1'></div>
+              <div className='h-1' />
               <FormControl>
                 <div className='flex flex-col gap-4'>
                   {field.value.map((value, index) => {
@@ -400,7 +400,7 @@ const AddForm = ({
   )
 }
 
-export default function Add() {
+export default function Add () {
   const [openSuccess, setOpenSuccess] = React.useState(false)
   const [openFailed, setOpenFailed] = React.useState(false)
 

@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   description: '환경을 Refill 하는 습관.'
 }
 
-export default function RootLayout({
+export default function RootLayout ({
   children
 }: Readonly<{
   children: React.ReactNode
