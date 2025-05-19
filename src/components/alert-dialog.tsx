@@ -45,23 +45,21 @@ const AlertDialogContent = ({
       )}
       {...props}
     >
-      <div className='relative'>
-        <div
-          className='absolute -top-12 right-8 h-20 w-20 rounded-full flex items-center justify-center'
-          style={{
-            background: sadFace
-              ? 'radial-gradient(50% 50% at 50% 50%, #FF7447 0%, #E1E3E6 100%)'
-              : 'radial-gradient(50% 50% at 50% 50%, #3261D7 0%, #E1E3E6 100%)'
-          }}
-        >
-          {sadFace ? (
-            <SadFace className='h-12 w-12' />
-          ) : (
-            <HappyFace className='h-12 w-12' />
-          )}
-        </div>
+      <div
+        className='absolute -top-8 right-12 h-20 w-20 rounded-full flex items-center justify-center'
+        style={{
+          background: sadFace
+            ? 'radial-gradient(50% 50% at 50% 50%, #FF7447 0%, #E1E3E6 100%)'
+            : 'radial-gradient(50% 50% at 50% 50%, #3261D7 0%, #E1E3E6 100%)'
+        }}
+      >
+        {sadFace ? (
+          <SadFace className='h-12 w-12' />
+        ) : (
+          <HappyFace className='h-12 w-12' />
+        )}
       </div>
-      <div className={'grid w-full gap-4'}>{children}</div>
+      <div className='grid w-full gap-4'>{children}</div>
     </AlertDialogPrimitive.Content>
   </AlertDialogPortal>
 )
