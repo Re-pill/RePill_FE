@@ -1,3 +1,5 @@
+'use client'
+
 import Link from 'next/link'
 import { cn } from '@/utils/cn'
 import { usePathname } from 'next/navigation'
@@ -17,7 +19,7 @@ const navItems: {
   {
     label: '등록',
     Icon: PlusCircle,
-    href: '/pills/add'
+    href: '/add'
   },
   {
     label: '스캔',

@@ -20,8 +20,9 @@ import { cn } from '@/utils/cn'
 import { ScrollArea, ScrollBar } from '@/components/scrollarea'
 import React from 'react'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/popover'
-import { Calendar as CalendarIcon, Plus } from 'lucide-react'
+import { Calendar as CalendarIcon, Plus, XCircle } from 'lucide-react'
 import { Calendar } from '@/components/calendar'
+import { BorderlessIconButton } from '@/components/borderless-icon-button'
 
 const pillAddSchema = z.object({
   name: z.string().min(1, {
@@ -323,8 +324,24 @@ const AddForm = () => {
                             'font-medium',
                             field.value[index] !== 0 && 'font-bold text-black'
                           )}
-                          className='text-[#FF7447]'
+                          className={cn(
+                            'text-[#FF7447]',
+                            index > 0 && 'pr-12!'
+                          )}
                         />
+                        {index > 0 && (
+                          <BorderlessIconButton
+                            className='absolute right-2 top-1.5 hover:bg-secondary-hover'
+                            onClick={(e) => {
+                              e.preventDefault()
+                              const newArray = [...field.value]
+                              newArray.splice(index, 1)
+                              field.onChange(newArray)
+                            }}
+                          >
+                            <XCircle />
+                          </BorderlessIconButton>
+                        )}
                       </PillTextInputRoot>
                     )
                   })}
@@ -362,21 +379,19 @@ const AddForm = () => {
 export default function Add() {
   return (
     <>
-      <Container>
-        <div className='relative'>
-          <div
-            className='absolute top-10 right-8 rounded-full w-24 h-24 -z-10'
-            style={{
-              background:
-                'radial-gradient(50% 50% at 50% 50%, #BFFF00 0%, #FFFFFF 100%)'
-            }}
-          />
-        </div>
-        <p className='text-2xl font-bold pt-20 pb-8'>
-          지금 복용 중인 약이 있나요?
-        </p>
-        <AddForm />
-      </Container>
+      <div className='relative'>
+        <div
+          className='absolute top-10 right-8 rounded-full w-24 h-24 -z-10'
+          style={{
+            background:
+              'radial-gradient(50% 50% at 50% 50%, #BFFF00 0%, #FFFFFF 100%)'
+          }}
+        />
+      </div>
+      <p className='text-2xl font-bold pt-20 pb-8'>
+        지금 복용 중인 약이 있나요?
+      </p>
+      <AddForm />
     </>
   )
 }
