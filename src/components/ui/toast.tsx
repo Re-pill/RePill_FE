@@ -73,7 +73,7 @@ const ToastClose = ({
 }: React.ComponentProps<typeof ToastPrimitives.Close>) => (
   <ToastPrimitives.Close
     className={cn(
-      'absolute right-2 top-2 rounded-md p-1 text-gray-900/50 opacity-0 transition-opacity hover:text-gray-900 group-[.destructive]:text-red-300 group-[.destructive]:hover:text-red-50',
+      'absolute right-2 top-2 rounded-md p-1 text-gray-900/50 opacity-0 transition-opacity hover:cursor-pointer hover:text-gray-900 group-hover:opacity-100 group-[.destructive]:text-red-300 group-[.destructive]:hover:text-red-50',
       className
     )}
     toast-close=''
