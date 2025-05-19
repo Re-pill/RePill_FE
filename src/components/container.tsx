@@ -8,7 +8,7 @@ export function Container ({
   return (
     <div
       className={cn(
-        'flex flex-col min-h-screen max-w-md px-2 py-2 mx-auto',
+        'flex flex-col min-h-screen max-w-md px-4 mx-auto',
         className
       )}
       {...props}

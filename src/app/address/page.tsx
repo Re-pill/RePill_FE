@@ -3,7 +3,6 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import { CheckIcon, LocationEditIcon, SearchIcon } from 'lucide-react'
-import { Container } from '@/components/container'
 import {
   PillTextInput,
   PillTextInputIcon,
@@ -23,7 +22,7 @@ export default function AddressPage () {
   }
 
   return (
-    <Container className='relative bg-background'>
+    <div className='relative'>
       {/* 강조 배경 */}
       <div className='absolute top-[3.75rem] left-[5.625rem] w-[5rem] h-[5rem] rounded-full bg-[radial-gradient(ellipse_at_center,orange_0%,_transparent_70%)] z-0' />
 
@@ -111,6 +110,6 @@ export default function AddressPage () {
           </div>
         </div>
       )}
-    </Container>
+    </div>
   )
 }
