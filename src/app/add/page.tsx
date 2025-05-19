@@ -13,7 +13,6 @@ import {
   FormMessage
 } from '@/components/form'
 import { PillTextInput, PillTextInputRoot } from '@/components/pill-text-input'
-import { Container } from '@/components/container'
 import { PillTypes } from '@/types/pill'
 import { PillButton } from '@/components/pill-button'
 import { cn } from '@/utils/cn'
@@ -23,6 +22,15 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/popover'
 import { Calendar as CalendarIcon, Plus, XCircle } from 'lucide-react'
 import { Calendar } from '@/components/calendar'
 import { BorderlessIconButton } from '@/components/borderless-icon-button'
+import {
+  AlertDialog,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogAction
+} from '@/components/alert-dialog'
 
 const pillAddSchema = z.object({
   name: z.string().min(1, {
@@ -135,7 +143,13 @@ function InputWithAffixes({
   )
 }
 
-const AddForm = () => {
+const AddForm = ({
+  onSubmitSuccess = () => {},
+  onSubmitError = () => {}
+}: {
+  onSubmitSuccess?: (data: z.infer<typeof pillAddSchema>) => void
+  onSubmitError?: (error: any) => void
+}) => {
   const form = useForm<z.infer<typeof pillAddSchema>>({
     resolver: zodResolver(pillAddSchema),
     defaultValues: {
@@ -148,7 +162,17 @@ const AddForm = () => {
   })
 
   const onSubmit = (data: z.infer<typeof pillAddSchema>) => {
-    console.log(data)
+    // TODO: Actually send the data to the server
+    try {
+      // For testing failure
+      // throw new Error('Test error')
+      console.log(data)
+      onSubmitSuccess(data)
+      form.reset()
+    } catch (error) {
+      console.error(error)
+      onSubmitError(error)
+    }
   }
 
   return (
@@ -377,6 +401,9 @@ const AddForm = () => {
 }
 
 export default function Add() {
+  const [openSuccess, setOpenSuccess] = React.useState(false)
+  const [openFailed, setOpenFailed] = React.useState(false)
+
   return (
     <>
       <div className='relative'>
@@ -391,7 +418,44 @@ export default function Add() {
       <p className='text-2xl font-bold pt-20 pb-8'>
         지금 복용 중인 약이 있나요?
       </p>
-      <AddForm />
+      <AddForm
+        onSubmitSuccess={() => {
+          setOpenSuccess(true)
+        }}
+        onSubmitError={() => {
+          setOpenFailed(true)
+        }}
+      />
+      <AlertDialog open={openSuccess} onOpenChange={setOpenSuccess}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>새로운 약을 등록했어요.</AlertDialogTitle>
+            <AlertDialogDescription>
+              MY에서 내가 등록한 약들을 확인할 수 있어요.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogAction onClick={() => setOpenSuccess(false)}>
+              확인
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+      <AlertDialog open={openFailed} onOpenChange={setOpenFailed}>
+        <AlertDialogContent sadFace>
+          <AlertDialogHeader>
+            <AlertDialogTitle>약을 등록하는데 실패했어요.</AlertDialogTitle>
+            <AlertDialogDescription>
+              잠시 후에 다시 시도해주세요.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogAction onClick={() => setOpenFailed(false)}>
+              확인
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </>
   )
 }
