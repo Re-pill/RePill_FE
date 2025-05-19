@@ -408,10 +408,10 @@ export default function Add () {
     <>
       <div className='relative'>
         <div
-          className='absolute top-10 right-8 rounded-full w-24 h-24 -z-10'
+          className='absolute top-9 left-53 rounded-full w-24 h-24 -z-10'
           style={{
             background:
-              'radial-gradient(50% 50% at 50% 50%, #BFFF00 0%, #FFFFFF 100%)'
+              'radial-gradient(50% 50% at 50% 50%, #BFFF00 0%, transparent 100%)'
           }}
         />
       </div>
