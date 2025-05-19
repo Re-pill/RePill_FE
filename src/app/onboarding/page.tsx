@@ -3,6 +3,7 @@
 import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
+import { Container } from '@/components/container'
 
 export default function OnboardingPage() {
   const router = useRouter()
@@ -15,7 +16,7 @@ export default function OnboardingPage() {
   }, [router])
 
   return (
-    <div className="w-[390px] h-[844px] bg-[var(--color-background)] flex items-center justify-center mx-auto">
+    <Container className="items-center justify-center">
       <Image
         src="/images/logo.svg"
         alt="Re pill logo"
@@ -23,6 +24,6 @@ export default function OnboardingPage() {
         height={120}
         priority
       />
-    </div>
+    </Container>
   )
 }
