@@ -15,7 +15,7 @@ export const Single: Story = {
   },
   argTypes: {
     selected: {
-      options: ['/find', '/pills/add', '/scan', '/notification', '/me'],
+      options: ['/find', '/add', '/scan', '/notification', '/me'],
       control: { type: 'select' }
     }
   }

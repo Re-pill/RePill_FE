@@ -1,3 +1,5 @@
+'use client'
+
 import Link from 'next/link'
 import { cn } from '@/utils/cn'
 import { usePathname } from 'next/navigation'
@@ -17,7 +19,7 @@ const navItems: {
   {
     label: '등록',
     Icon: PlusCircle,
-    href: '/pills/add'
+    href: '/add'
   },
   {
     label: '스캔',
@@ -74,8 +76,8 @@ const navItems: {
   }
 ]
 
-export function BottomNav({ selected }: { selected?: string }) {
-  const pathname = selected ?? usePathname()
+export function BottomNav ({ selected }: { selected?: string }) {
+  const pathname = usePathname()
 
   return (
     <nav className='fixed bottom-0 left-0 right-0 z-50'>
@@ -88,7 +90,7 @@ export function BottomNav({ selected }: { selected?: string }) {
                 href={item.href}
                 className={cn(
                   'relative -top-11 h-16 w-16 border-solid border-4 border-[#1D1F24] flex flex-col gap-2 items-center justify-center rounded-full transition-colors text-secondary-bg-hover bg-secondary-bg hover:bg-[#ACE500]',
-                  pathname === item.href && 'bg-primary-bg'
+                  (selected ?? pathname) === item.href && 'bg-primary-bg'
                 )}
               >
                 <item.Icon className='h-6 w-6' />
@@ -101,7 +103,7 @@ export function BottomNav({ selected }: { selected?: string }) {
                 href={item.href}
                 className={cn(
                   'h-15.5 w-15.5 p-2 flex flex-col gap-2 items-center justify-center rounded-full transition-colors text-secondary-bg-hover hover:bg-secondary-bg-hover/20',
-                  pathname === item.href && 'text-primary-bg'
+                  (selected ?? pathname) === item.href && 'text-primary-bg'
                 )}
               >
                 <item.Icon className='h-6 w-6' />
