@@ -11,7 +11,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger
 } from './alert-dialog'
-import { PillButton } from './pill-button'
+import { PillButton } from './button/pill-button'
 
 const meta: Meta<typeof AlertDialog> = {
   component: AlertDialog,

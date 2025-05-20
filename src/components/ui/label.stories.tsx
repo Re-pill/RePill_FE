@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
 import { Label as LabelComp } from './label'
-import { PillButton } from './pill-button'
+import { PillButton } from './button/pill-button'
 
 const meta: Meta<typeof LabelComp> = {
   component: LabelComp

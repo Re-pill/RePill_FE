@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { PillButton } from '@/components/pill-button'
+import { PillButton } from '@/components/ui/button/pill-button'
 import { KakaoIcon } from '@/components/icons/kakao'
 
 export default function LoginPage () {

@@ -2,7 +2,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
 import { Toaster } from './toaster'
-import { PillButton } from '../pill-button'
+import { PillButton } from './button/pill-button'
 import { useToast } from '@/hooks/use-toast'
 import { ToastAction } from './toast'
 

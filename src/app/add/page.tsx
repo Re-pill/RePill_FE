@@ -10,17 +10,17 @@ import {
   FormLabel,
   FormControl,
   FormMessage
-} from '@/components/form'
-import { PillTextInput, PillTextInputRoot } from '@/components/pill-text-input'
+} from '@/components/ui/form'
+import { PillTextInput, PillTextInputRoot } from '@/components/ui/pill-text-input'
 import { PillTypes } from '@/types/pill'
-import { PillButton } from '@/components/pill-button'
+import { PillButton } from '@/components/ui/button/pill-button'
 import { cn } from '@/utils/cn'
-import { ScrollArea, ScrollBar } from '@/components/scrollarea'
+import { ScrollArea, ScrollBar } from '@/components/ui/scrollarea'
 import React from 'react'
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/popover'
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { Calendar as CalendarIcon, Plus, XCircle } from 'lucide-react'
-import { Calendar } from '@/components/calendar'
-import { BorderlessIconButton } from '@/components/borderless-icon-button'
+import { Calendar } from '@/components/ui/calendar'
+import { BorderlessIconButton } from '@/components/ui/button/borderless-icon-button'
 import {
   AlertDialog,
   AlertDialogContent,
@@ -29,7 +29,7 @@ import {
   AlertDialogDescription,
   AlertDialogFooter,
   AlertDialogAction
-} from '@/components/alert-dialog'
+} from '@/components/ui/alert-dialog'
 
 const pillAddSchema = z.object({
   name: z.string().min(1, {
