@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { cn } from '@/utils/cn'
 import { usePathname } from 'next/navigation'
 import { Search, PlusCircle, Bell, UserCircle } from 'lucide-react'
-import { Container } from './container'
+import { Container } from '../ui/container'
 
 const navItems: {
   label: string

@@ -7,8 +7,8 @@ import {
   PillTextInput,
   PillTextInputIcon,
   PillTextInputRoot
-} from '@/components/pill-text-input'
-import { PillButton } from '@/components/pill-button'
+} from '@/components/ui/pill-text-input'
+import { PillButton } from '@/components/ui/button/pill-button'
 import {
   AlertDialog,
   AlertDialogContent,
@@ -16,7 +16,7 @@ import {
   AlertDialogTitle,
   AlertDialogFooter,
   AlertDialogAction
-} from '@/components/alert-dialog'
+} from '@/components/ui/alert-dialog'
 
 export default function AddressPage () {
   const [inputValue, setInputValue] = useState('')
