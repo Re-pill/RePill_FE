@@ -46,7 +46,7 @@ export default function AddressPage () {
       <div className='relative h-screen'>
         <div
           className='absolute top-26 left-18 w-20 h-20 rounded-full -z-10' style={{
-            background: 'radial-gradient(50% 50% at 50% 50%, #FF7447 0%, transparent 100%)'
+            background: 'radial-gradient(50% 50% at 50% 50%, var(--color-orange) 0%, transparent 100%)'
           }}
         />
 

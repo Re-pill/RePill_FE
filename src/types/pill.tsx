@@ -22,8 +22,8 @@ export const PillTypes: {
   },
   liquid: {
     label: '물약(시럽)',
-    buttonClass: 'border-[#FF7447] hover:bg-[#FF7447]/80',
-    ShapeComp: () => <div className='bg-[#FF7447] w-6 h-6 rounded-md' />
+    buttonClass: 'border-orange hover:bg-orange/80',
+    ShapeComp: () => <div className='bg-orange w-6 h-6 rounded-md' />
   },
   etc: {
     label: '기타',

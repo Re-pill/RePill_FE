@@ -261,7 +261,7 @@ const AddForm = ({
                       'font-medium',
                       field.value !== 0 && 'font-bold text-black'
                     )}
-                    className='text-[#FF7447]'
+                    className='text-orange'
                   />
                 </PillTextInputRoot>
               </FormControl>
@@ -349,7 +349,7 @@ const AddForm = ({
                             field.value[index] !== 0 && 'font-bold text-black'
                           )}
                           className={cn(
-                            'text-[#FF7447]',
+                            'text-orange',
                             index > 0 && 'pr-12!'
                           )}
                         />

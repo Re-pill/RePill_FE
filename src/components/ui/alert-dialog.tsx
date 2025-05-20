@@ -49,7 +49,7 @@ const AlertDialogContent = ({
         className='absolute -top-8 right-12 h-20 w-20 rounded-full flex items-center justify-center'
         style={{
           background: sadFace
-            ? 'radial-gradient(50% 50% at 50% 50%, #FF7447 0%, #E1E3E6 100%)'
+            ? 'radial-gradient(50% 50% at 50% 50%, var(--color-orange) 0%, #E1E3E6 100%)'
             : 'radial-gradient(50% 50% at 50% 50%, #3261D7 0%, #E1E3E6 100%)'
         }}
       >
@@ -137,7 +137,7 @@ const AlertDialogCancel = ({
   <AlertDialogPrimitive.Cancel
     className={cn(
       buttonVariants({ size: 'full' }),
-      'h-11 bg-[#FF7447] text-white font-semibold hover:bg-[#FF7447]/90',
+      'h-11 bg-orange text-white font-semibold hover:bg-orange/90',
       className
     )}
     {...props}
