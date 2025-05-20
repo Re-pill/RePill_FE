@@ -22,6 +22,14 @@ export function PictureUploadButton ({
 }) {
   const [open, setOpen] = React.useState(false)
   const inputRef = React.useRef<HTMLInputElement>(null)
+  let key = Math.random().toString(36)
+
+  React.useEffect(() => {
+    if (!image) {
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      key = Math.random().toString(36)
+    }
+  }, [image])
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
@@ -40,7 +48,10 @@ export function PictureUploadButton ({
       <div className='relative w-52 h-52 bg-transparent border rounded-2xl border-secondary-bg-hover border-dashed hover:cursor-pointer'>
         {image && (
           <BorderlessIconButton
-            className='absolute -top-4 -right-4 bg-transparent rounded-full z-10 hover:cursor-pointer text-[#3261D7]' onClick={() => setOpen(true)}
+            className='absolute -top-4 -right-4 bg-transparent rounded-full z-10 hover:cursor-pointer text-[#3261D7]' onClick={(e) => {
+              e.preventDefault()
+              setOpen(true)
+            }}
           >
             <XCircle className='h-6 w-6 bg-background rounded-full' />
           </BorderlessIconButton>
@@ -52,8 +63,7 @@ export function PictureUploadButton ({
               src={URL.createObjectURL(image)}
               alt='Uploaded'
               fill
-              objectFit='cover'
-              className='rounded-2xl'
+              className='rounded-2xl object-cover'
             />
             )
           : (
@@ -77,6 +87,7 @@ export function PictureUploadButton ({
           ref={inputRef}
           onChange={handleChange}
           className='hidden'
+          key={key}
         />
       </div>
       <AlertDialog open={open} onOpenChange={setOpen}>
@@ -86,14 +97,19 @@ export function PictureUploadButton ({
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogAction
-              onClick={() => {
+              onClick={(e) => {
+                e.preventDefault()
                 setOpen(false)
                 onImageChange?.(null)
               }}
             >
               네
             </AlertDialogAction>
-            <AlertDialogCancel>
+            <AlertDialogCancel onClick={(e) => {
+              e.preventDefault()
+              setOpen(false)
+            }}
+            >
               아니요
             </AlertDialogCancel>
           </AlertDialogFooter>

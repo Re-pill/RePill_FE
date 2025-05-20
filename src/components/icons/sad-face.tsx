@@ -19,7 +19,7 @@ export function SadFace (props: React.SVGProps<SVGSVGElement>) {
       <path
         d='M39.625 23.625L46.2249 16.9918L56.25 7'
         stroke='#BFFF00'
-        stroke-width='7.875'
+        strokeWidth='7.875'
       />
     </svg>
   )
