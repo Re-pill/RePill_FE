@@ -16,3 +16,10 @@
   --color-error: #D42422;
   --color-orange: #FF7447;
 }
+
+@layer utilities {
+  .dropdown-content-width-full {
+    width: var(--radix-dropdown-menu-trigger-width);
+    max-height: var(--radix-dropdown-menu-content-available-height);
+  }
+}
