@@ -36,7 +36,7 @@ export function PillTextInputIcon ({
       role='presentation'
       className={cn(
         'absolute top-3 pointer-events-none size-5',
-        pos === 'left' ? 'left-4 [&~input]:pl-11' : 'right-4',
+        pos === 'left' ? 'left-4 [&~input]:pl-11' : 'right-4 [&~input]:pr-11',
         className
       )}
     >

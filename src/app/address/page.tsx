@@ -73,14 +73,14 @@ export default function AddressPage () {
 
             <div>
               <PillTextInputRoot>
+                <PillTextInputIcon pos='right'>
+                  <SearchIcon className='w-6 h-6' />
+                </PillTextInputIcon>
                 <PillTextInput
                   placeholder='도로명, 건물명, 지번 입력'
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
                 />
-                <PillTextInputIcon pos='right'>
-                  <SearchIcon className='w-6 h-6' />
-                </PillTextInputIcon>
               </PillTextInputRoot>
 
               {inputValue.trim() === ''
