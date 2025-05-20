@@ -7,8 +7,8 @@ const iconButtonVariants = cva(
   {
     variants: {
       variant: {
-        default: 'text-secondary hover:bg-secondary-bg-hover',
-        withDot: 'text-secondary hover:bg-secondary-bg-hover',
+        default: 'text-secondary hover:bg-secondary-bg',
+        withDot: 'text-secondary hover:bg-secondary-bg',
         accent: 'text-primary-bg hover:bg-primary-bg/10'
       },
       size: {
