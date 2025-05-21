@@ -25,7 +25,7 @@ export default function RootLayout ({
     <html lang='en'>
       <body className={`${pretendard.variable} antialiased`}>
         <ErrorProvider>
-          <Container>{children}</Container>
+          {children}
         </ErrorProvider>
       </body>
     </html>
