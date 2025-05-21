@@ -1,6 +1,6 @@
 import { BottomNav } from '@/components/page/bottom-nav'
 
-export default function AddLayout ({
+export default function ScanLayout ({
   children
 }: Readonly<{
   children: React.ReactNode
