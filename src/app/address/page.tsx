@@ -25,6 +25,7 @@ export default function AddressPage () {
   const [inputValue, setInputValue] = useState('')
   const [open, setOpen] = useState(false)
   const { setError } = useError()
+  // TODO: Add debounce to the input value and fetch the address
 
   const handleRegister = () => {
     // TODO: Actually register the address
