@@ -30,7 +30,6 @@ import {
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem
 } from '@/components/ui/dropdown'
-import { HappyFace } from '@/components/icons/happy-face'
 import { PillButton } from '@/components/ui/button/pill-button'
 import { ChevronDown, Plus, CalendarIcon } from 'lucide-react'
 import { PillTextInput, PillTextInputRoot } from '@/components/ui/pill-text-input'
@@ -359,7 +358,6 @@ export default function ScanPage () {
         <span className='text-2xl font-bold'>
           인증하면 기록할 수 있어요.
         </span>
-        <HappyFace className='h-8 w-8' />
       </div>
       <ScanForm
         onSubmitSuccess={() => {
