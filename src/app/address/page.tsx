@@ -17,10 +17,14 @@ import {
   AlertDialogFooter,
   AlertDialogAction
 } from '@/components/ui/alert-dialog'
+import { useError } from '@/hooks/error'
+import { KAKAO_MAP_API_URL, type CoordToAddressResponse } from '@/types/kakao/map'
+import { KAKAO_REST_API_KEY } from '@/constant'
 
 export default function AddressPage () {
   const [inputValue, setInputValue] = useState('')
   const [open, setOpen] = useState(false)
+  const { setError } = useError()
 
   const handleRegister = () => {
     // TODO: Actually register the address
@@ -29,11 +33,38 @@ export default function AddressPage () {
 
   const onClickCurrentLocation = () => {
     // TODO: Send the coordinate to server and get the actual address
-    const success = (pos: GeolocationPosition) => {
-      setInputValue(`${pos.coords.latitude} ${pos.coords.longitude}`)
+    const success = async (pos: GeolocationPosition) => {
+      const { latitude, longitude } = pos.coords
+      const res = await fetch(`${KAKAO_MAP_API_URL}/geo/coord2address?x=${longitude}&y=${latitude}`, {
+        headers: {
+          Authorization: `KakaoAK ${KAKAO_REST_API_KEY}`
+        }
+      })
+      if (!res.ok) {
+        setError({
+          title: '위치 정보를 가져올 수 없어요.',
+          error: new Error('Failed to fetch address'),
+        })
+        return
+      }
+      const data: CoordToAddressResponse = await res.json()
+      if (data.documents.length === 0) {
+        setError({
+          title: '현재 위치를 찾을 수 없어요.',
+          error: new Error('No address found'),
+        })
+        return
+      }
+
+      const address = data.documents[0].address.address_name
+      setInputValue(address)
     }
     const error = (error: unknown) => {
-      console.error(error)
+      setError({
+        title: '위치 정보를 가져올 수 없어요.',
+        error,
+        description: '위치 정보 접근을 허용해주세요.'
+      })
     }
     navigator.geolocation.getCurrentPosition(success, error, {
       timeout: 5000,

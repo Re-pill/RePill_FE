@@ -38,6 +38,7 @@ import { ScrollArea, ScrollBar } from '@/components/ui/scrollarea'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { Calendar } from '@/components/ui/calendar'
 import { cn } from '@/utils/cn'
+import { useError } from '@/hooks/error'
 
 const scanSchema = z.object({
   image: z.instanceof(File, {
@@ -338,7 +339,7 @@ const ScanForm = ({
 
 export default function ScanPage () {
   const [openSuccess, setOpenSuccess] = React.useState(false)
-  const [openFailed, setOpenFailed] = React.useState(false)
+  const { setError } = useError()
 
   return (
     <>
@@ -363,8 +364,11 @@ export default function ScanPage () {
       <ScanForm
         onSubmitSuccess={() => {
           setOpenSuccess(true)
-        }} onSubmitError={() => {
-          setOpenFailed(true)
+        }} onSubmitError={(err) => {
+          setError({
+            title: '인증하는데 실패했어요.',
+            error: err
+          })
         }}
       />
       <AlertDialog open={openSuccess} onOpenChange={setOpenSuccess}>
@@ -377,21 +381,6 @@ export default function ScanPage () {
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogAction onClick={() => setOpenSuccess(false)}>
-              확인
-            </AlertDialogAction>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
-      <AlertDialog open={openFailed} onOpenChange={setOpenFailed}>
-        <AlertDialogContent sadFace>
-          <AlertDialogHeader>
-            <AlertDialogTitle>인증하는데 실패했어요.</AlertDialogTitle>
-            <AlertDialogDescription>
-              잠시 후에 다시 시도해주세요.
-            </AlertDialogDescription>
-          </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogAction onClick={() => setOpenFailed(false)}>
               확인
             </AlertDialogAction>
           </AlertDialogFooter>

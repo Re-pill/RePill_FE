@@ -30,6 +30,7 @@ import {
   AlertDialogFooter,
   AlertDialogAction
 } from '@/components/ui/alert-dialog'
+import { useError } from '@/hooks/error'
 
 const pillAddSchema = z.object({
   name: z.string().min(1, {
@@ -402,7 +403,7 @@ const AddForm = ({
 
 export default function Add () {
   const [openSuccess, setOpenSuccess] = React.useState(false)
-  const [openFailed, setOpenFailed] = React.useState(false)
+  const { setError } = useError()
 
   return (
     <>
@@ -422,8 +423,11 @@ export default function Add () {
         onSubmitSuccess={() => {
           setOpenSuccess(true)
         }}
-        onSubmitError={() => {
-          setOpenFailed(true)
+        onSubmitError={(err) => {
+          setError({
+            title: '약을 등록하는데 실패했어요.',
+            error: err
+          })
         }}
       />
       <AlertDialog open={openSuccess} onOpenChange={setOpenSuccess}>
@@ -436,21 +440,6 @@ export default function Add () {
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogAction onClick={() => setOpenSuccess(false)}>
-              확인
-            </AlertDialogAction>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
-      <AlertDialog open={openFailed} onOpenChange={setOpenFailed}>
-        <AlertDialogContent sadFace>
-          <AlertDialogHeader>
-            <AlertDialogTitle>약을 등록하는데 실패했어요.</AlertDialogTitle>
-            <AlertDialogDescription>
-              잠시 후에 다시 시도해주세요.
-            </AlertDialogDescription>
-          </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogAction onClick={() => setOpenFailed(false)}>
               확인
             </AlertDialogAction>
           </AlertDialogFooter>
