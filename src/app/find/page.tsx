@@ -43,7 +43,7 @@ export default function FindPage () {
   const [loading, error] = useKakaoLoader({
     appkey: KAKAO_JS_KEY as string,
     libraries: ['services'],
-    url: 'http://dapi.kakao.com/v2/maps/sdk.js'
+    url: '//dapi.kakao.com/v2/maps/sdk.js'
   })
   const { setError } = useError()
   const [selectedTypes, setSelectedTypes] = React.useState<string[]>([])
