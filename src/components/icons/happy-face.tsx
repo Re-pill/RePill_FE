@@ -1,4 +1,6 @@
-export function HappyFace (props: React.SVGProps<SVGSVGElement>) {
+export function HappyFace ({ eyeColor = '#BFFF00', ...props }: React.SVGProps<SVGSVGElement> & {
+  eyeColor?: string
+}) {
   return (
     <svg
       width='64'
@@ -18,7 +20,7 @@ export function HappyFace (props: React.SVGProps<SVGSVGElement>) {
       />
       <path
         d='M39.625 25.875L46.2249 19.2418L56.25 9.25'
-        stroke='#BFFF00'
+        stroke={eyeColor}
         strokeWidth='7.875'
       />
     </svg>
