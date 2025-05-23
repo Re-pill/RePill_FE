@@ -3,8 +3,16 @@
 import Image from 'next/image'
 import { PillButton } from '@/components/ui/button/pill-button'
 import { KakaoIcon } from '@/components/icons/kakao'
+import { useRouter } from 'next/navigation'
 
 export default function LoginPage () {
+  const router = useRouter()
+  const handleKakaoLogin = () => {
+    const redirectUri = `${window.location.origin}/auth/kakao/callback`
+    const kakaoLoginUrl = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=72c6c8b1e90421c20af84c1d50ab083e&state=sGZAsXVZ5DriH5KWds7UZ67-wEFR6ucH9hy0O8MNHIo%3D&redirect_uri=${redirectUri}`
+    router.push(kakaoLoginUrl)
+  }
+
   return (
     <div className='relative h-screen'>
       <div
@@ -42,7 +50,8 @@ export default function LoginPage () {
           <PillButton
             variant='primary'
             size='full'
-            className='bg-[#FEE500] text-black font-semibold text-sm'
+            className='bg-[#FEE500] text-black font-semibold text-sm hover:bg-[#E5CE00]'
+            onClick={handleKakaoLogin}
           >
             <KakaoIcon className='w-4 h-4 mr-2' />
             카카오 로그인
