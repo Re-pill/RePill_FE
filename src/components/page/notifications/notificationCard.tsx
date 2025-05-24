@@ -7,7 +7,6 @@ import { ChevronRight } from 'lucide-react'
 import Image from 'next/image'
 
 export type NotificationCardProps = {
-  href: string
   name: string
   type: keyof typeof PillTypes
   daysLeft: number

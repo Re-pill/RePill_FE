@@ -10,7 +10,6 @@ const meta: Meta<typeof NotificationCard> = {
       control: { type: 'select' },
       options: Object.keys(PillTypes)
     },
-    href: { control: 'text' },
     name: { control: 'text' },
     daysLeft: { control: 'number' },
     expirationDate: { control: 'text' },
@@ -24,7 +23,6 @@ type Story = StoryObj<NotificationCardProps>
 
 export const Default: Story = {
   args: {
-    href: '/notification/1',
     name: '타이레놀',
     type: 'pill',
     daysLeft: 3,
@@ -35,7 +33,6 @@ export const Default: Story = {
 
 export const Active: Story = {
   args: {
-    href: '/notification/1',
     name: '아목시실린',
     type: 'powder',
     daysLeft: 0,
