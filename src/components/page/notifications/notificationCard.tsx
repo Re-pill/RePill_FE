@@ -7,7 +7,6 @@ import { ChevronRight } from 'lucide-react'
 import Image from 'next/image'
 
 export type NotificationCardProps = {
-  href: string
   name: string
   type: keyof typeof PillTypes
   daysLeft: number
@@ -102,7 +101,7 @@ export const NotificationCard: FC<NotificationCardProps> = ({
             <span className={ddayClass}>D-{daysLeft}</span>
           </div>
           <div className='mt-2 text-sm font-normal text-secondary'>
-            {expirationDate}
+            {new Date(expirationDate).toLocaleDateString('ko-KR')}
           </div>
         </div>
       </div>
